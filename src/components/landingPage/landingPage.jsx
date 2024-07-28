@@ -1,30 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Box, TextField, Button, Typography } from '@mui/material';
 import { API_BASE_URL } from '../../services/apiBaseUrl.jsx';
 
 export const LandingPage = () => {
     const imageUrl = `${API_BASE_URL}/media/landing_page/test-landing-page-image.jpg`;
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  };
+
   return (
     <Box
       sx={{
-        minWidth: '100vw',
-        minHeight: '100vh',
+        width: '100vw',
+        height: '100vh',
         backgroundImage: `url(${imageUrl})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        overflowX: 'hidden',
-        overflowY: 'hidden',
+        overflow: 'hidden',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
       }}
     >
-      <Box
-        sx={{
+      <form
+        onSubmit={handleSubmit}
+        style={{
           width: '300px',
           padding: '20px',
-          backgroundColor: 'rgba(0, 0, 0, 0.7)',
+          backgroundColor: 'rgba(0, 0, 0, 0.7)', // Dark gray with 70% opacity
           borderRadius: '8px',
           boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
           textAlign: 'center',
@@ -50,10 +54,10 @@ export const LandingPage = () => {
             style: { color: 'white' },
           }}
         />
-        <Button variant="contained" color="primary" fullWidth>
+        <Button type="submit" variant="contained" color="primary" fullWidth>
           Sign In
         </Button>
-      </Box>
+      </form>
     </Box>
   );
 };

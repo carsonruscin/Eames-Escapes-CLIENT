@@ -23,6 +23,7 @@ export const theme = createTheme({
             styleOverrides: {
                 root: {
                     padding: '0 !important',
+                    overflow: 'hidden',
                 },
             },
         },

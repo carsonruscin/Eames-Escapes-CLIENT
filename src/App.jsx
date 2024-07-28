@@ -10,7 +10,7 @@ export const App = () => {
     <>
       <CssBaseline />
       <AppLayout>
-        <Container maxWidth='100vw' sx={{padding: '0',}}>
+        <Container maxWidth='100vw' sx={{padding: '0', overflow: 'hidden' }}>
           <Routes>
             <Route path="/" element={<LandingPage />}/> 
           </Routes>
