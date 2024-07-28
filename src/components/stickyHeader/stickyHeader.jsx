@@ -18,7 +18,7 @@ export const StickyHeader = () => {
   return (
     <StyledAppBar>
       <Toolbar>
-        <Typography variant="h4" sx={{}}>Eame's Escapes</Typography>
+        <Typography variant="h4">Eame's Escapes</Typography>
         {/* Add other header content here */}
       </Toolbar>
     </StyledAppBar>

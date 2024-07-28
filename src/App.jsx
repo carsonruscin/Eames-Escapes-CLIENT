@@ -2,7 +2,7 @@ import { Container, CssBaseline } from '@mui/material'
 import { LandingPage } from './components/landingPage/landingPage.jsx'
 import { AppLayout } from './components/appLayout/appLayout.jsx'
 import { Route, Routes } from 'react-router-dom'
-import { API_BASE_URL } from './services/apiBaseUrl.jsx'
+
 
 export const App = () => {
 
@@ -10,7 +10,7 @@ export const App = () => {
     <>
       <CssBaseline />
       <AppLayout>
-        <Container maxWidth='100%' sx={{padding: '0',}}>
+        <Container maxWidth='100vw' sx={{padding: '0',}}>
           <Routes>
             <Route path="/" element={<LandingPage />}/> 
           </Routes>
