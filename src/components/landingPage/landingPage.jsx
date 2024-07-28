@@ -8,11 +8,13 @@ export const LandingPage = () => {
   return (
     <Box
       sx={{
-        width: '100vw',
-        height: '100vh',
+        minWidth: '100vw',
+        minHeight: '100vh',
         backgroundImage: `url(${imageUrl})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
+        overflowX: 'hidden',
+        overflowY: 'hidden',
       }}
     >
     </Box>
