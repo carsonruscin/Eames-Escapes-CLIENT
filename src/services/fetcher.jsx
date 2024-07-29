@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:8000'
+import { API_BASE_URL } from "./apiBaseUrl.jsx";
 
 const checkError = (res) => {
   if (!res.ok) {
@@ -19,18 +19,20 @@ const checkErrorJson = (res) => {
 
 
 const catchError = (err) => {
+  console.error('Fetch error:', err)
   if (err.status === 401) {
-    window.location.href = "/login"
+    console.error('Unauthorized Access - 401')
+    // window.location.href = "/"
   }
   if (err.status === 404 || err.status === 400) {
     throw err
   }
 }
 
-export const fetchWithResponse = (resource, options) => fetch(`${API_URL}/${resource}`, options)
+export const fetchWithResponse = (resource, options) => fetch(`${API_BASE_URL}/${resource}`, options)
   .then(checkErrorJson)
   .catch(catchError)
 
-export const fetchWithoutResponse = (resource, options) => fetch(`${API_URL}/${resource}`, options)
+export const fetchWithoutResponse = (resource, options) => fetch(`${API_BASE_URL}/${resource}`, options)
   .then(checkError)
   .catch(catchError)
