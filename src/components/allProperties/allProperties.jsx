@@ -1,14 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Grid, Card, CardContent, CardMedia, Typography, Button, Box, CircularProgress } from '@mui/material';
+import { Grid, Card, CardContent, Typography, Button, Box, CircularProgress } from '@mui/material';
 import { getAllProperties } from '../../services/allPropertiesService.jsx';
 import { useNavigate } from 'react-router-dom';
-
-// Function to generate placeholder image URLs
-const getPlaceholderImage = (index) => {
-  const colors = ['1abc9c', '2ecc71', '3498db', '9b59b6', 'e67e22', 'e74c3c'];
-  const color = colors[index % colors.length];
-  return `https://via.placeholder.com/300x200/${color}/ffffff?text=Property+${index + 1}`;
-};
 
 export const AllProperties = () => {
   const [properties, setProperties] = useState([]);
@@ -18,8 +11,8 @@ export const AllProperties = () => {
 
   
   useEffect(() => {
-    // Check if user is logged in, redirect to landing page if not
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    // Check if user is logged in, redirect to landing page if not
     if (!isLoggedIn) {
       navigate('/', { replace: true });
       return;
@@ -44,14 +37,7 @@ export const AllProperties = () => {
   }, [navigate]);
   if (loading) {
     return (
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "calc(100vh - 150px)",
-        }}
-      >
+      <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "calc(100vh - 150px)" }}>
         <CircularProgress />
       </Box>
     );
@@ -59,38 +45,32 @@ export const AllProperties = () => {
 
   if (error) {
     return (
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "calc(100vh - 150px)",
-        }}
-      >
+      <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "calc(100vh - 150px)" }}>
         <Typography color="error">{error}</Typography>
       </Box>
     );
   }
 
   return (
-    <Box sx={{ flexGrow: 1, padding: 3, height: 'calc(100vh - 150px)', overflow: 'auto', }}>
+    <Box sx={{ flexGrow: 1, padding: 3, height: 'calc(100vh - 150px)', overflow: 'auto' }}>
       <Grid container spacing={3}>
         {properties.length > 0 ? (
           properties.map((property, index) => (
             <Grid item xs={12} sm={6} md={3} key={property.id || index}>
-              <Card
-                sx={{
-                  height: "100%",
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
-                <CardMedia
-                  component="img"
-                  height="200"
-                  image={property.image_url || getPlaceholderImage(index)}
-                  alt={property.name || `Property ${index + 1}`}
-                />
+              <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+                <Box 
+                  sx={{ 
+                    height: 200, 
+                    backgroundColor: 'grey.300', 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    justifyContent: 'center' 
+                  }}
+                >
+                  <Typography variant="body2" color="text.secondary">
+                    Image placeholder
+                  </Typography>
+                </Box>
                 <CardContent sx={{ flexGrow: 1 }}>
                   <Typography gutterBottom variant="h5" component="div">
                     {property.name || `Property ${index + 1}`}
