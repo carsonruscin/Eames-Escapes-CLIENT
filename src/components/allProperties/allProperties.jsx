@@ -9,7 +9,6 @@ export const AllProperties = () => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  
   useEffect(() => {
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
     // Check if user is logged in, redirect to landing page if not
@@ -60,16 +59,14 @@ export const AllProperties = () => {
               <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                 <Box 
                   sx={{ 
-                    height: 200, 
+                    height: 0, 
+                    paddingTop: '56.25%', // 16:9 aspect ratio
                     backgroundColor: 'grey.300', 
                     display: 'flex', 
                     alignItems: 'center', 
                     justifyContent: 'center' 
                   }}
                 >
-                  <Typography variant="body2" color="text.secondary">
-                    Image placeholder
-                  </Typography>
                 </Box>
                 <CardContent sx={{ flexGrow: 1 }}>
                   <Typography gutterBottom variant="h5" component="div">
