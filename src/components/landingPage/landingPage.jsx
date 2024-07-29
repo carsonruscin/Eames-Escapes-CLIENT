@@ -5,7 +5,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { login } from '../../services/auth.jsx';
 
 export const LandingPage = ({ setIsLoggedIn }) => {
-    const imageUrl = `${API_BASE_URL}/media/landing_page/test-landing-page-image.jpg`;
+    const imageUrl = `${API_BASE_URL}/media/landing_page/test-landing-page-image-wide.jpg`;
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const navigate = useNavigate()

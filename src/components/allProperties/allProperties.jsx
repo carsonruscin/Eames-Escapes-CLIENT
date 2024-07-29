@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Grid, Card, CardContent, Typography, Button, Box, CircularProgress } from '@mui/material';
 import { getAllProperties } from '../../services/allPropertiesService.jsx';
 import { useNavigate } from 'react-router-dom';
@@ -34,9 +34,10 @@ export const AllProperties = () => {
 
     fetchProperties();
   }, [navigate]);
+
   if (loading) {
     return (
-      <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "calc(100vh - 150px)" }}>
+      <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", flexGrow: 1 }}>
         <CircularProgress />
       </Box>
     );
@@ -44,14 +45,22 @@ export const AllProperties = () => {
 
   if (error) {
     return (
-      <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "calc(100vh - 150px)" }}>
+      <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", flexGrow: 1 }}>
         <Typography color="error">{error}</Typography>
       </Box>
     );
   }
 
   return (
-    <Box sx={{ flexGrow: 1, padding: 3, height: 'calc(100vh - 150px)', overflow: 'auto' }}>
+    <Box sx={{ 
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      overflow: 'auto',
+      padding: 3,
+    }}>
       <Grid container spacing={3}>
         {properties.length > 0 ? (
           properties.map((property, index) => (

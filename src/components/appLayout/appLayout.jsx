@@ -1,27 +1,37 @@
+import React from 'react';
 import { StickyHeader } from '../stickyHeader/stickyHeader.jsx';
 import { NavBar } from '../navBar/navBar.jsx';
 import { Box } from '@mui/material'
 import { useLocation } from 'react-router-dom';
+import { StickyFooter } from '../stickyFooter/stickyFooter.jsx';
 
 export const AppLayout = ({ children, isLoggedIn, setIsLoggedIn }) => {
   const location = useLocation();
-  // Only show NavBar if user is logged in and not on the landing page
   const showNavBar = isLoggedIn && location.pathname !== '/';
+  const isLandingPage = location.pathname === '/' && !isLoggedIn;
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+    <Box sx={{ 
+      display: 'flex', 
+      flexDirection: 'column', 
+      height: '100vh',
+      overflow: 'hidden',
+    }}>
       <StickyHeader isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
       {showNavBar && <NavBar />}
       <Box 
         component="main" 
         sx={{ 
-          flexGrow: 1, 
-          mt: showNavBar ? '150px' : '100px', // Adjust top margin based on NavBar visibility
-          overflow: 'hidden',
+          flexGrow: 1,
+          display: 'flex',
+          flexDirection: 'column',
+      overflow: 'hidden',
+          position: 'relative',
         }}
       >
         {children}
       </Box>
+      <StickyFooter />
     </Box>
   );
 };

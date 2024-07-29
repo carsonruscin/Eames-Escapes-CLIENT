@@ -1,4 +1,5 @@
 import { createTheme } from '@mui/material/styles'
+import { height } from '@mui/system';
 
 export const theme = createTheme({
     palette: {
@@ -37,5 +38,13 @@ export const theme = createTheme({
                 disableGutters: true,
             },
         },
+        MuiCssBaseline: {
+          styleOverrides: {
+            'html, body': {
+              height: '100%',
+              overflow: 'hidden',
+            }
+          }
+        }
     },
   });
