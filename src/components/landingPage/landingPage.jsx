@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Box, TextField, Button, Typography } from '@mui/material';
 import { API_BASE_URL } from '../../services/apiBaseUrl.jsx';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { login } from '../../services/auth.jsx';
 
 export const LandingPage = ({ setIsLoggedIn }) => {
@@ -9,6 +9,14 @@ export const LandingPage = ({ setIsLoggedIn }) => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const navigate = useNavigate()
+    const location = useLocation()
+
+    // Redirect to all-properties if user is already logged in
+    useEffect(() => {
+        if (localStorage.getItem('isLoggedIn') === 'true') {
+            navigate('/all-properties');
+        }
+    }, [navigate]);
 
     const handleSignIn = async (event) => {
       event.preventDefault();
@@ -16,10 +24,12 @@ export const LandingPage = ({ setIsLoggedIn }) => {
         const user = { username, password };
         const response = await login(user);
         if (response && response.token) {
+          // Store token and set logged in state
           localStorage.setItem('token', response.token);
-          // Set isLoggedIn state to true after successful login
-          setIsLoggedIn(true)
-          navigate('/all-properties');
+          localStorage.setItem('isLoggedIn', 'true');
+          setIsLoggedIn(true);
+          // Navigate to all-properties, replacing the current history entry
+          navigate('/all-properties', { replace: true });
         } else {
           console.error('Login failed: no token received')
         }
