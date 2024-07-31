@@ -8,7 +8,6 @@ export const AllProperties = () => {
   const [loading, setLoading] = useState(true)
   const navigate = useNavigate()
 
-  // Check if user is logged in, redirect to landing page if not
   useEffect(() => {
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true'
     if (!isLoggedIn) {
@@ -50,52 +49,44 @@ export const AllProperties = () => {
         flexDirection: 'column',
       }}>
         <Grid container spacing={3} sx={{ padding: '15px', marginBottom: '85px', flexGrow: 1, }}>
-          {properties.length > 0 ? (
-            properties.map((property, index) => (
-              <Grid item xs={12} sm={6} md={3} key={property.id || index}>
-                <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-                  <Box 
-                    sx={{ 
-                      position: 'relative',
-                      paddingTop: '56.25%', // 16:9 aspect ratio
-                      backgroundColor: '#faf2e6',
+          {properties.map((property) => (
+            <Grid item xs={12} sm={6} md={3} key={property.id}>
+              <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+                <Box 
+                  sx={{ 
+                    position: 'relative',
+                    paddingTop: '56.25%', // 16:9 aspect ratio
+                    backgroundColor: '#faf2e6',
+                  }}
+                >
+                  <Box
+                    component="img"
+                    sx={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
                     }}
-                  >
-                    <Box
-                      component="img"
-                      sx={{
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'cover',
-                      }}
-                      src={property.imageUrl || 'placeholder-image-url.jpg'}
-                      alt={property.name || `Property ${index + 1}`}
-                    />
-                  </Box>
-                  <CardContent sx={{ flexGrow: 1, bgcolor: '#faf2e6' }}>
-                    <Typography gutterBottom variant="h6" component="div">
-                      {property.name || `Property ${index + 1}`}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      {property.description || "No description available"}
-                    </Typography>
-                  </CardContent>
-                  <Button size="small" color="primary" sx={{ backgroundColor: '#faf2e6', '&:hover': {backgroundColor: '#e1d9cf'} }}>
-                    View Details
-                  </Button>
-                </Card>
-              </Grid>
-            ))
-          ) : (
-            <Grid item xs={12}>
-              <Typography variant="h6" align="center">
-                No properties found.
-              </Typography>
+                    src={property.image}
+                    alt={property.name}
+                  />
+                </Box>
+                <CardContent sx={{ flexGrow: 1, bgcolor: '#faf2e6' }}>
+                  <Typography gutterBottom variant="h6" component="div">
+                    {property.name}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    {property.description}
+                  </Typography>
+                </CardContent>
+                <Button size="small" color="primary" sx={{ backgroundColor: '#faf2e6', '&:hover': {backgroundColor: '#e1d9cf'} }}>
+                  Book Now
+                </Button>
+              </Card>
             </Grid>
-          )}
+          ))}
         </Grid>
       </Container>
     </Box>
