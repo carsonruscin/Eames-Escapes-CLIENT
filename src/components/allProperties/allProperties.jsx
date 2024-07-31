@@ -82,7 +82,7 @@ export const AllProperties = () => {
                   </Typography>
                 </CardContent>
                 <Button size="small" color="primary" sx={{ backgroundColor: '#faf2e6', '&:hover': {backgroundColor: '#e1d9cf'} }}>
-                  View Details
+                  Book Now
                 </Button>
               </Card>
             </Grid>
