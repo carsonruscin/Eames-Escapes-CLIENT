@@ -74,12 +74,17 @@ export const AllProperties = () => {
                   />
                 </Box>
                 <CardContent sx={{ flexGrow: 1, bgcolor: '#faf2e6' }}>
-                  <Typography gutterBottom variant="h6" component="div">
+                  <Typography variant="h6" component="div">
                     {property.name}
                   </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    {property.description}
+                  <Typography variant="body2" color="text.secondary" gutterBottom sx={{ fontWeight: 'bold' }}>
+                    Type: {property.property_type.name}
                   </Typography>
+                  <Box sx={{ mt: 2 }}>
+                    <Typography variant="body2" color="text.secondary">
+                      {property.description}
+                    </Typography>
+                  </Box>
                 </CardContent>
                 <Button size="small" color="primary" sx={{ backgroundColor: '#faf2e6', '&:hover': {backgroundColor: '#e1d9cf'} }}>
                   Book Now
