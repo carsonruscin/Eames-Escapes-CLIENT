@@ -1,22 +1,21 @@
-import { Tabs, Tab, Box } from '@mui/material';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { Tabs, Tab, Box } from '@mui/material'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 export const NavBar = () => {
-  console.log('NavBar component rendered')
 
-  const navigate = useNavigate();
-  const location = useLocation();
+  const navigate = useNavigate()
+  const location = useLocation()
 
   const handleChange = (event, newValue) => {
-    navigate(newValue);
-  };
+    navigate(newValue)
+  }
 
   return (
     <Box sx={{ width: '100%', 
                bgcolor: 'rgba(0, 0, 0, 0.7)', 
                display: 'flex', 
                justifyContent: 'center',
-               position: 'sticky',
+               position: 'fixed',
                top: '100px',
                left: 0,
                zIndex: 1000,
@@ -47,5 +46,5 @@ export const NavBar = () => {
         <Tab label="Cottages" value="/cottages" />
       </Tabs>
     </Box>
-  );
-};
+  )
+}

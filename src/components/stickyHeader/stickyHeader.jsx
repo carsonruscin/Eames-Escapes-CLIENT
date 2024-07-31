@@ -1,33 +1,33 @@
-import React from 'react';
-import { AppBar, Toolbar, Typography, Button } from '@mui/material';
-import { styled } from '@mui/material/styles';
-import { useNavigate } from 'react-router-dom';
+import { AppBar, Toolbar, Typography, Button } from '@mui/material'
+import { styled } from '@mui/material/styles'
+import { useNavigate } from 'react-router-dom'
 
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
   height: '100px',
-  minWidth: '100vw',
+  width: '100%',
   margin: '0',
   padding: '0',
   position: 'fixed',
   top: 0,
+  left: 0,
   zIndex: theme.zIndex.drawer + 2,
   backgroundColor: theme.palette.primary.main,
-}));
+}))
 
 export const StickyHeader = ({ isLoggedIn, setIsLoggedIn }) => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const handleLogout = () => {
     // Clear the token from localStorage
-    localStorage.removeItem('token');
+    localStorage.removeItem('token')
     // Set isLoggedIn to false in localStorage
-    localStorage.setItem('isLoggedIn', 'false');
+    localStorage.setItem('isLoggedIn', 'false')
     // Update the isLoggedIn state in the parent component
-    setIsLoggedIn(false);
+    setIsLoggedIn(false)
     // Navigate to the landing page
-    navigate('/');
-  };
+    navigate('/')
+  }
 
   return (
     <StyledAppBar>
@@ -48,8 +48,8 @@ export const StickyHeader = ({ isLoggedIn, setIsLoggedIn }) => {
         )}
       </Toolbar>
     </StyledAppBar>
-  );
-};
+  )
+}
 
 
 

@@ -1,8 +1,8 @@
-import { API_BASE_URL } from "./apiBaseUrl.jsx";
+import { API_BASE_URL } from "./apiBaseUrl.jsx"
 
 const checkError = (res) => {
   if (!res.ok) {
-    throw Error(res.status);
+    throw Error(res.status)
   }
   return res
 }
@@ -11,18 +11,17 @@ const checkErrorJson = (res) => {
   if (!res.ok) {
     return res.json().then(error => {
       // Create and throw a custom error object
-      throw { status: res.status, message: error.message || res.statusText };
-    });
+      throw { status: res.status, message: error.message || res.statusText }
+    })
   }
-  return res.json();
-};
+  return res.json()
+}
 
 
 const catchError = (err) => {
   console.error('Fetch error:', err)
   if (err.status === 401) {
     console.error('Unauthorized Access - 401')
-    // window.location.href = "/"
   }
   if (err.status === 404 || err.status === 400) {
     throw err

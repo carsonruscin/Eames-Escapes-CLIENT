@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Container, CssBaseline, Box } from '@mui/material'
+import { Container, CssBaseline } from '@mui/material'
 import { LandingPage } from './components/landingPage/landingPage.jsx'
 import { AppLayout } from './components/appLayout/appLayout.jsx'
 import { Route, Routes, Navigate, useLocation } from 'react-router-dom'
@@ -15,8 +15,8 @@ export const App = () => {
     localStorage.setItem('isLoggedIn', isLoggedIn.toString())
   }, [isLoggedIn])
 
-  const location = useLocation();
-  const isLandingPage = location.pathname === '/' && !isLoggedIn;
+  const location = useLocation()
+  const isLandingPage = location.pathname === '/' && !isLoggedIn
 
   return (
     <>

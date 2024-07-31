@@ -1,4 +1,4 @@
-import { fetchWithResponse } from "./fetcher.jsx";
+import { fetchWithResponse } from "./fetcher.jsx"
 
 
 export const getAllProperties = () => {

@@ -1,5 +1,4 @@
 import { createTheme } from '@mui/material/styles'
-import { height } from '@mui/system';
 
 export const theme = createTheme({
     palette: {
@@ -7,7 +6,7 @@ export const theme = createTheme({
         main: '#00796b', // Primary Green
       },
       secondary: {
-        main: '#00796b', // Secondary Green
+        main: '#00796b', // 
       },
     },
     typography: {
@@ -42,7 +41,6 @@ export const theme = createTheme({
           styleOverrides: {
             'html, body': {
               height: '100%',
-              overflow: 'hidden',
             }
           }
         }
