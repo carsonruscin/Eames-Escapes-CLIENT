@@ -6,7 +6,7 @@ export const theme = createTheme({
         main: '#00796b', // Primary Green
       },
       secondary: {
-        main: '#00796b', // Secondary Green
+        main: '#00796b', // 
       },
     },
     typography: {
@@ -37,5 +37,12 @@ export const theme = createTheme({
                 disableGutters: true,
             },
         },
+        MuiCssBaseline: {
+          styleOverrides: {
+            'html, body': {
+              height: '100%',
+            }
+          }
+        }
     },
   });
