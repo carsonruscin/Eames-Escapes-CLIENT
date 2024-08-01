@@ -5,6 +5,7 @@ import { AppLayout } from './components/appLayout/appLayout.jsx'
 import { Route, Routes, Navigate, useLocation } from 'react-router-dom'
 import { AllProperties } from './components/allProperties/allProperties.jsx'
 import { LuxuryEstates } from './components/luxuryEstates/luxuryEstates.jsx'
+import { Ranches } from './components/ranches/ranches.jsx'
 
 
 export const App = () => {
@@ -35,6 +36,9 @@ export const App = () => {
             } />
             <Route path="/luxury-estates" element={
               isLoggedIn ? <LuxuryEstates /> : <Navigate to="/" replace />
+            } />
+            <Route path="/ranches" element={
+              isLoggedIn ? <Ranches /> : <Navigate to="/" replace />
             } />
           </Routes>
         )}
