@@ -2,21 +2,21 @@ import { useState, useEffect } from 'react'
 import { Grid, Card, CardContent, Typography, Button, Box, CircularProgress, Container } from '@mui/material'
 import { getAllProperties } from '../../services/allPropertiesService.jsx'
 
-export const LuxuryEstates = () => {
+export const Ranches = () => {
   const [properties, setProperties] = useState([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const fetchLuxuryEstates = async () => {
+    const fetchRanches = async () => {
       setLoading(true)
       const data = await getAllProperties()
-      // Filter properties to only include luxury estates
-      const luxuryEstates = data.filter(property => property.property_type.name.toLowerCase() === 'luxury estate')
-      setProperties(luxuryEstates)
+      // Filter properties to only include ranches
+      const Ranches = data.filter(property => property.property_type.name.toLowerCase() === 'ranch')
+      setProperties(Ranches)
       setLoading(false)
     }
   
-    fetchLuxuryEstates()
+    fetchRanches()
   }, [])
 
   if (loading) {

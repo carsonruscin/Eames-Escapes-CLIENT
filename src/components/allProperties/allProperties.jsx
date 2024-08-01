@@ -51,7 +51,7 @@ export const AllProperties = () => {
         <Grid container spacing={3} sx={{ padding: '15px', marginBottom: '85px', flexGrow: 1, }}>
           {properties.map((property) => (
             <Grid item xs={12} sm={6} md={3} key={property.id}>
-              <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+              <Card sx={{ height: '100%', maxHeight: '570px', display: 'flex', flexDirection: 'column' }}>
                 <Box 
                   sx={{ 
                     position: 'relative',
