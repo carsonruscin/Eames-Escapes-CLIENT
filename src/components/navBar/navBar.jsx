@@ -6,13 +6,13 @@ export const NavBar = () => {
   const navigate = useNavigate()
   const location = useLocation()
 
-  const handleChange = (event, newValue) => {
+  const handleChange = (_, newValue) => {
     navigate(newValue)
   }
 
   return (
     <Box sx={{ width: '100%', 
-               bgcolor: 'rgba(0, 0, 0, 0.7)', 
+               bgcolor: 'rgba(0, 0, 0, 0.7)',
                display: 'flex', 
                justifyContent: 'center',
                position: 'fixed',
