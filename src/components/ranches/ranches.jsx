@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Grid, Card, CardContent, Typography, Button, Box, CircularProgress, Container } from '@mui/material'
-import { getAllProperties } from '../../services/allPropertiesService.jsx'
+import { getAllProperties } from '../../services/propertiesService.jsx'
 
 export const Ranches = () => {
   const [properties, setProperties] = useState([])

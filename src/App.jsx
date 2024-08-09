@@ -7,6 +7,7 @@ import { AllProperties } from './components/allProperties/allProperties.jsx'
 import { LuxuryEstates } from './components/luxuryEstates/luxuryEstates.jsx'
 import { Ranches } from './components/ranches/ranches.jsx'
 import { Cottages } from './components/cottages/cottages.jsx'
+import { MyPropertiesPage } from './components/myPropertiesPage/myPropertiesPage.jsx'
 
 
 export const App = () => {
@@ -43,6 +44,9 @@ export const App = () => {
             } />
             <Route path="/cottages" element={
               isLoggedIn ? <Cottages /> : <Navigate to="/" replace />
+            } />
+            <Route path="/my-properties" element={
+              isLoggedIn ? <MyPropertiesPage /> : <Navigate to="/" replace />
             } />
           </Routes>
         )}

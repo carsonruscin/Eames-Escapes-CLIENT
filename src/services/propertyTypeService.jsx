@@ -1,8 +1,8 @@
 import { fetchWithResponse } from "./fetcher.jsx"
 
 
-export const getAllProperties = () => {
-    return fetchWithResponse('properties',{
+export const getAllPropertyTypes = () => {
+    return fetchWithResponse('property-types',{
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

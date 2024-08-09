@@ -79,7 +79,7 @@ export const StickyHeader = ({ isLoggedIn, setIsLoggedIn }) => {
                 }
               }}
             >
-              <MenuItem onClick={handleMenuClose}>My Properties</MenuItem>
+              <MenuItem onClick={() => { handleMenuClose(); navigate('/my-properties') }}>My Properties</MenuItem>
               <MenuItem onClick={handleMenuClose}>My Bookings</MenuItem>
               <MenuItem onClick={handleLogout}>Logout</MenuItem>
             </Menu>

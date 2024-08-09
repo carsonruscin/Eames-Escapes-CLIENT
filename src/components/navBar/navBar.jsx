@@ -10,6 +10,11 @@ export const NavBar = () => {
     navigate(newValue)
   }
 
+  // Determine the value for the Tabs component
+  const tabValue = ['/all-properties', '/luxury-estates', '/ranches', '/cottages'].includes(location.pathname)
+    ? location.pathname
+    : false
+
   return (
     <Box sx={{ width: '100%', 
                bgcolor: 'rgba(0, 0, 0, 0.7)',
@@ -22,7 +27,7 @@ export const NavBar = () => {
                height: '50px'
     }}>
       <Tabs
-        value={location.pathname}
+        value={tabValue}
         onChange={handleChange}
         centered
         sx={{
