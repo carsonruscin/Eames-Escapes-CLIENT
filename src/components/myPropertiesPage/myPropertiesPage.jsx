@@ -2,11 +2,22 @@ import { useState, useEffect } from 'react'
 import { Box, Container } from '@mui/material'
 import { PropertyForm } from './propertyForm.jsx'
 import { MyPropertiesList } from './myPropertiesList.jsx'
+import { getPropertiesByOwner } from '../../services/propertiesService.jsx'
 
 
 export const MyPropertiesPage = () => {
   const [selectedProperty, setSelectedProperty] = useState(null)
   const [properties, setProperties] = useState([])
+
+  // Fetch properties by owner (belonging to current logged in user) when component mounts
+  useEffect(() => {
+    const fetchPropertiesByOwner = async () => {
+      const fetchedProperties = await getPropertiesByOwner()
+      setProperties(fetchedProperties)
+    }
+
+    fetchPropertiesByOwner()
+  }, [])
 
   const handleAddProperty = (newProperty) => {
     setProperties([...properties, newProperty])
@@ -14,7 +25,7 @@ export const MyPropertiesPage = () => {
 
   const handleClearSelectedProperty = () => {
     setSelectedProperty(null)
-  };
+  }
 
   return (
     <Box sx={{ 
@@ -44,5 +55,5 @@ export const MyPropertiesPage = () => {
         </Box>
       </Container>
     </Box>
-  );
-};
+  )
+}

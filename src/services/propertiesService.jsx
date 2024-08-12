@@ -22,3 +22,13 @@ export const postNewProperty = (propertyData) => {
     })
 }
 
+export const getPropertiesByOwner = () => {
+    return fetchWithResponse('properties/by-owner',{
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Token ${localStorage.getItem('token')}`
+        }
+    })
+}
+
