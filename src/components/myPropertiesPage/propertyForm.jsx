@@ -16,6 +16,7 @@ import {
 import { postNewProperty } from '../../services/propertiesService.jsx'
 import { getAllAmenities } from '../../services/amenitiesService.jsx'
 import { getAllPropertyTypes } from '../../services/propertyTypeService.jsx'
+import { updateProperty } from '../../services/propertiesService.jsx'
 
 
 const initialFormData = {
@@ -110,11 +111,20 @@ export const PropertyForm = ({ selectedProperty, onAddProperty, onClear }) => {
       })
     }
 
+    // Fetch image from URL and convert to base64 string
+    const fetchImageAsBase64 = async (url) => {
+      const response = await fetch(url)
+      const blob = await response.blob()
+      return convertToBase64(blob)
+    }
+
     // If image is a File object (e.g. user uploads new image when posting or updating form)
     // convert that image object to base64 string, otherwise maintain current image base64 state
     let base64Image = null
     if (formData.image instanceof File) {
       base64Image = await convertToBase64(formData.image)
+    } else if (typeof formData.image === 'string' && formData.image.startsWith('http')) {
+      base64Image = await fetchImageAsBase64(formData.image)
     } else {
       base64Image = formData.image
     }
@@ -132,11 +142,20 @@ export const PropertyForm = ({ selectedProperty, onAddProperty, onClear }) => {
       image: base64Image,
     }
 
-    const newProperty = await postNewProperty(newPropertyData)
-    onAddProperty(newProperty)
-    setFormData(initialFormData)
-    setImagePreview(null)
+    if (selectedProperty) {
+      // Update existing property
+      const updatedProperty = await updateProperty(selectedProperty.id, newPropertyData)
+      onAddProperty(updatedProperty)
+  } else {
+      // Add new property
+      const newProperty = await postNewProperty(newPropertyData)
+      onAddProperty(newProperty)
   }
+
+  setFormData(initialFormData)
+  setImagePreview(null)
+  onClear()
+}
 
   const handleClearForm = () => {
     setFormData(initialFormData)

@@ -32,3 +32,14 @@ export const getPropertiesByOwner = () => {
     })
 }
 
+export const updateProperty = (id, propertyData) => {
+    return fetchWithResponse(`properties/${id}`,{
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Token ${localStorage.getItem('token')}`
+        },
+        body: JSON.stringify(propertyData)
+    })
+}
+
