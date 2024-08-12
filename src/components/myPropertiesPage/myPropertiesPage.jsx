@@ -20,7 +20,18 @@ export const MyPropertiesPage = () => {
   }, [])
 
   const handleAddProperty = (newProperty) => {
-    setProperties([...properties, newProperty])
+    setProperties((prevProperties) => {
+      const propertyIndex = prevProperties.findIndex(property => property.id === newProperty.id)
+      if (propertyIndex !== -1) {
+        // Update existing property
+        const updatedProperties = [...prevProperties]
+        updatedProperties[propertyIndex] = newProperty
+        return updatedProperties
+      } else {
+        // Add new property
+        return [...prevProperties, newProperty]
+      }
+    })
   }
 
   const handleClearSelectedProperty = () => {
