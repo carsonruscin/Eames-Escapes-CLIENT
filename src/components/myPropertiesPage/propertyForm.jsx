@@ -61,7 +61,11 @@ export const PropertyForm = ({ selectedProperty, onAddProperty, onClear }) => {
 
   useEffect(() => {
     if (selectedProperty) {
-      setFormData(selectedProperty)
+      setFormData({
+        ...selectedProperty,
+        property_type: selectedProperty.property_type.name,
+        amenities: selectedProperty.amenities.map(amenity => amenity.name)
+      })
       setImagePreview(selectedProperty.image)
     } else {
       setFormData(initialFormData)
@@ -106,9 +110,13 @@ export const PropertyForm = ({ selectedProperty, onAddProperty, onClear }) => {
       })
     }
 
+    // If image is a File object (e.g. user uploads new image when posting or updating form)
+    // convert that image object to base64 string, otherwise maintain current image base64 state
     let base64Image = null
-    if (formData.image) {
+    if (formData.image instanceof File) {
       base64Image = await convertToBase64(formData.image)
+    } else {
+      base64Image = formData.image
     }
 
     // Map amenities to their respective objects with ids
@@ -122,19 +130,19 @@ export const PropertyForm = ({ selectedProperty, onAddProperty, onClear }) => {
       property_type: { id: propertyType.id },
       amenities: amenitiesWithIds,
       image: base64Image,
-    };
+    }
 
-    const newProperty = await postNewProperty(newPropertyData);
-    onAddProperty(newProperty);
-    setFormData(initialFormData);
-    setImagePreview(null);
-  };
+    const newProperty = await postNewProperty(newPropertyData)
+    onAddProperty(newProperty)
+    setFormData(initialFormData)
+    setImagePreview(null)
+  }
 
   const handleClearForm = () => {
-    setFormData(initialFormData);
-    setImagePreview(null);
-    onClear();
-  };
+    setFormData(initialFormData)
+    setImagePreview(null)
+    onClear()
+  }
 
   return (
     <Box
@@ -152,7 +160,7 @@ export const PropertyForm = ({ selectedProperty, onAddProperty, onClear }) => {
       }}
     >
       <Typography variant="h6" gutterBottom align="center">
-        {selectedProperty ? "Edit Property" : "Add New Property"}
+        {selectedProperty ? "Edit Property" : "Post A New Property"}
       </Typography>
       <Grid container spacing={2} sx={{ flexGrow: 1 }}>
         <Grid item xs={6} sx={{ display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
@@ -314,9 +322,9 @@ export const PropertyForm = ({ selectedProperty, onAddProperty, onClear }) => {
           Clear Selections
         </Button>
         <Button variant="contained" color="primary" type="submit" sx={{ height: '56px', width: '200px' }}>
-          Post Property
+          {selectedProperty ? "Update Property" : "Post Property"}
         </Button>
       </Box>
     </Box>
-  );
-};
+  )
+}
