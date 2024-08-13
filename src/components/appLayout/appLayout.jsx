@@ -4,6 +4,7 @@ import { Box } from '@mui/material'
 import { useLocation } from 'react-router-dom'
 import { StickyFooter } from '../stickyFooter/stickyFooter.jsx'
 
+
 export const AppLayout = ({ children, isLoggedIn, setIsLoggedIn }) => {
   const location = useLocation()
   const showNavBar = isLoggedIn && location.pathname !== '/'
