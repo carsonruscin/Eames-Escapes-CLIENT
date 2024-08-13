@@ -1,6 +1,8 @@
 import { Box, Typography, Card, CardContent, Grid, CardActions, Button } from '@mui/material'
 
-export const MyPropertiesList = ({ properties, setSelectedProperty }) => {
+
+export const MyPropertiesList = ({ properties, setSelectedProperty, onDeleteProperty }) => {
+
   return (
     <Box sx={{ 
       height: '100%', 
@@ -108,6 +110,7 @@ export const MyPropertiesList = ({ properties, setSelectedProperty }) => {
                       fullWidth
                       size="small" 
                       color="secondary"
+                      onClick={() => onDeleteProperty(property.id)}
                       sx={{ justifyContent: 'center', backgroundColor: '#faf2e6', '&:hover': {backgroundColor: '#e1d9cf'} }}
                     >
                       Delete Listing
