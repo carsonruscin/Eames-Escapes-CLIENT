@@ -1,4 +1,4 @@
-import { fetchWithResponse } from "./fetcher.jsx"
+import { fetchWithoutResponse, fetchWithResponse } from "./fetcher.jsx"
 
 
 export const getAllProperties = () => {
@@ -40,6 +40,16 @@ export const updateProperty = (id, propertyData) => {
             'Authorization': `Token ${localStorage.getItem('token')}`
         },
         body: JSON.stringify(propertyData)
+    })
+}
+
+export const deleteProperty = (id) => {
+    return fetchWithoutResponse(`properties/${id}`,{
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Token ${localStorage.getItem('token')}`
+        }
     })
 }
 

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { Box, Container } from '@mui/material'
 import { PropertyForm } from './propertyForm.jsx'
 import { MyPropertiesList } from './myPropertiesList.jsx'
-import { getPropertiesByOwner } from '../../services/propertiesService.jsx'
+import { deleteProperty, getPropertiesByOwner } from '../../services/propertiesService.jsx'
 
 
 export const MyPropertiesPage = () => {
@@ -38,6 +38,11 @@ export const MyPropertiesPage = () => {
     setSelectedProperty(null)
   }
 
+  const handleDelete = async (propertyId) => {
+    await deleteProperty(propertyId)
+    setProperties((prevProperties) => prevProperties.filter(property => property.id !== propertyId))
+  }
+
   return (
     <Box sx={{ 
       height: 'calc(100vh - 150px)',
@@ -62,6 +67,7 @@ export const MyPropertiesPage = () => {
           <MyPropertiesList 
             properties={properties}
             setSelectedProperty={setSelectedProperty}
+            onDeleteProperty={handleDelete}
           />
         </Box>
       </Container>
