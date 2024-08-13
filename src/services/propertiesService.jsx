@@ -11,6 +11,46 @@ export const getAllProperties = () => {
     })
 }
 
+export const getPropertiesByOwner = () => {
+    return fetchWithResponse('properties/by-owner',{
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Token ${localStorage.getItem('token')}`
+        }
+    })
+}
+
+export const getPropertiesByTypeLuxuryEstate = () => {
+    return fetchWithResponse('properties/luxury-estates',{
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Token ${localStorage.getItem('token')}`
+        }
+    })
+}
+
+export const getPropertiesByTypeRanch = () => {
+    return fetchWithResponse('properties/ranches',{
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Token ${localStorage.getItem('token')}`
+        }
+    })
+}
+
+export const getPropertiesByTypeCottage = () => {
+    return fetchWithResponse('properties/cottages',{
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Token ${localStorage.getItem('token')}`
+        }
+    })
+}
+
 export const postNewProperty = (propertyData) => {
     return fetchWithResponse('properties',{
         method: 'POST',
@@ -19,16 +59,6 @@ export const postNewProperty = (propertyData) => {
             'Authorization': `Token ${localStorage.getItem('token')}`
         },
         body: JSON.stringify(propertyData)
-    })
-}
-
-export const getPropertiesByOwner = () => {
-    return fetchWithResponse('properties/by-owner',{
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Token ${localStorage.getItem('token')}`
-        }
     })
 }
 

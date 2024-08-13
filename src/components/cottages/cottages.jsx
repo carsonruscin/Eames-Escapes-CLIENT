@@ -1,31 +1,19 @@
 import { useState, useEffect } from 'react'
-import { Grid, Card, CardContent, Typography, Button, Box, CircularProgress, Container } from '@mui/material'
-import { getAllProperties } from '../../services/propertiesService.jsx'
+import { Grid, Card, CardContent, Typography, Button, Box, Container } from '@mui/material'
+import { getPropertiesByTypeCottage } from '../../services/propertiesService.jsx'
+
 
 export const Cottages = () => {
   const [properties, setProperties] = useState([])
-  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchCottages = async () => {
-      setLoading(true)
-      const data = await getAllProperties()
-      // Filter properties to only include cottages
-      const Cottages = data.filter(property => property.property_type.name.toLowerCase() === 'cottage')
-      setProperties(Cottages)
-      setLoading(false)
+      const cottages = await getPropertiesByTypeCottage()
+      setProperties(cottages)
     }
   
     fetchCottages()
   }, [])
-
-  if (loading) {
-    return (
-      <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", flexGrow: 1 }}>
-        <CircularProgress />
-      </Box>
-    )
-  }
 
   return (
     <Box sx={{ 

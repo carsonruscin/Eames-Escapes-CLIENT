@@ -1,31 +1,19 @@
 import { useState, useEffect } from 'react'
-import { Grid, Card, CardContent, Typography, Button, Box, CircularProgress, Container } from '@mui/material'
-import { getAllProperties } from '../../services/propertiesService.jsx'
+import { Grid, Card, CardContent, Typography, Button, Box, Container } from '@mui/material'
+import { getPropertiesByTypeRanch } from '../../services/propertiesService.jsx'
+
 
 export const Ranches = () => {
   const [properties, setProperties] = useState([])
-  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchRanches = async () => {
-      setLoading(true)
-      const data = await getAllProperties()
-      // Filter properties to only include ranches
-      const Ranches = data.filter(property => property.property_type.name.toLowerCase() === 'ranch')
-      setProperties(Ranches)
-      setLoading(false)
+      const ranches = await getPropertiesByTypeRanch()
+      setProperties(ranches)
     }
   
     fetchRanches()
   }, [])
-
-  if (loading) {
-    return (
-      <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", flexGrow: 1 }}>
-        <CircularProgress />
-      </Box>
-    )
-  }
 
   return (
     <Box sx={{ 

@@ -1,6 +1,7 @@
 import { AppBar, Toolbar } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
+
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
   top: 'auto',
   bottom: 0,

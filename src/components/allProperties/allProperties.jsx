@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
-import { Grid, Card, CardContent, Typography, Button, Box, CircularProgress, Container } from '@mui/material'
+import { Grid, Card, CardContent, Typography, Button, Box, Container } from '@mui/material'
 import { getAllProperties } from '../../services/propertiesService.jsx'
 import { useNavigate } from 'react-router-dom'
 
+
 export const AllProperties = () => {
   const [properties, setProperties] = useState([])
-  const [loading, setLoading] = useState(true)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -16,22 +16,12 @@ export const AllProperties = () => {
     }
   
     const fetchProperties = async () => {
-      setLoading(true)
       const data = await getAllProperties()
       setProperties(data)
-      setLoading(false)
     }
   
     fetchProperties()
-  }, [navigate])
-
-  if (loading) {
-    return (
-      <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", flexGrow: 1 }}>
-        <CircularProgress />
-      </Box>
-    )
-  }
+  }, [])
 
   return (
     <Box sx={{ 

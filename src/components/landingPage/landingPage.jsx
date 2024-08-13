@@ -4,6 +4,7 @@ import { API_BASE_URL } from '../../services/apiBaseUrl.jsx'
 import { useNavigate } from 'react-router-dom'
 import { login } from '../../services/auth.jsx'
 
+
 export const LandingPage = ({ setIsLoggedIn }) => {
     const imageUrl = `${API_BASE_URL}/media/landing_page/test-landing-page-image-wide.jpg`
     const [username, setUsername] = useState('')
@@ -14,7 +15,7 @@ export const LandingPage = ({ setIsLoggedIn }) => {
         if (localStorage.getItem('isLoggedIn') === 'true') {
             navigate('/all-properties')
         }
-    }, [navigate])
+    }, [])
 
     const handleSignIn = async (event) => {
       event.preventDefault()
@@ -23,7 +24,9 @@ export const LandingPage = ({ setIsLoggedIn }) => {
       if (response && response.token) {
         localStorage.setItem('token', response.token)
         localStorage.setItem('isLoggedIn', 'true')
-        setIsLoggedIn(true);
+        setIsLoggedIn(true)
+        // Once user is logged in, navigate to all-properties
+        // Prevent browser back button from navigating back to landing page
         navigate('/all-properties', { replace: true })
       }
     }

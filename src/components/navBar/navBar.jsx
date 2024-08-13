@@ -1,6 +1,7 @@
 import { Tabs, Tab, Box } from '@mui/material'
 import { useNavigate, useLocation } from 'react-router-dom'
 
+
 export const NavBar = () => {
 
   const navigate = useNavigate()
