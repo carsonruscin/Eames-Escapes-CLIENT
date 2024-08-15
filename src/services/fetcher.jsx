@@ -11,7 +11,7 @@ const checkErrorJson = (res) => {
   if (!res.ok) {
     return res.json().then(error => {
       // Create and throw a custom error object
-      throw { status: res.status, message: error.message || res.statusText }
+      throw { status: res.status, errors: error.errors || { message: error.message || res.statusText } }
     })
   }
   return res.json()

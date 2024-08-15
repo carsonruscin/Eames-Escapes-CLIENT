@@ -2,7 +2,6 @@ import { AppBar, Toolbar, Typography, Button, Menu, MenuItem, Box } from '@mui/m
 import { styled } from '@mui/material/styles'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
-import logo from '../../assets/logo.svg'
 
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
@@ -16,12 +15,6 @@ const StyledAppBar = styled(AppBar)(({ theme }) => ({
   zIndex: theme.zIndex.drawer + 2,
   backgroundColor: theme.palette.primary.main,
 }))
-
-const StyledLogo = styled('img')({
-  height: '180px',
-  width: 'auto',
-  filter: 'brightness(0) invert(1)',
-})
 
 export const StickyHeader = ({ isLoggedIn, setIsLoggedIn }) => {
   const navigate = useNavigate()
@@ -50,9 +43,10 @@ export const StickyHeader = ({ isLoggedIn, setIsLoggedIn }) => {
   return (
     <StyledAppBar>
       <Toolbar sx={{ height: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <Box sx={{ display: 'flex', alignItems: 'center', }}>
-          <StyledLogo src={logo} alt="Eame's Escapes" />
-          <Typography variant='h5'>Eame's Escapes</Typography>
+        <Box gap={10} sx={{ display: 'flex', alignItems: 'center', }}>
+          {/* <StyledLogo src={logo} alt="Eame's Escapes" /> */}
+          <Typography variant='h3' fontFamily={'baumans'} sx={{ paddingLeft: '50px', color: '#faf2e6' }}>E | E</Typography>
+          <Typography variant='h3' fontFamily={'whisper'} sx={{ color: '#faf2e6' }}>Eame's Escapes</Typography>
         </Box>
         {isLoggedIn && (
           <>

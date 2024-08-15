@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Container, CssBaseline } from '@mui/material'
 import { LandingPage } from './components/landingPage/landingPage.jsx'
+import { RegisterPage } from './components/registerPage/registerPage.jsx'
 import { AppLayout } from './components/appLayout/appLayout.jsx'
 import { Route, Routes, Navigate, useLocation } from 'react-router-dom'
 import { AllProperties } from './components/allProperties/allProperties.jsx'
@@ -48,6 +49,7 @@ export const App = () => {
             <Route path="/my-properties" element={
               isLoggedIn ? <MyPropertiesPage /> : <Navigate to="/" replace />
             } />
+            <Route path="/register" element={<RegisterPage />} />
           </Routes>
         )}
       </AppLayout>

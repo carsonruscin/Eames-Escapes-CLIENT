@@ -337,7 +337,7 @@ export const PropertyForm = ({ selectedProperty, onAddProperty, onClear }) => {
         </Grid>
       </Grid>
       <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 2, paddingBottom: "10px", gap: 24.5 }}>
-        <Button variant="outlined" color="secondary" onClick={handleClearForm} sx={{ height: '56px', width: '200px' }}>
+        <Button variant="outlined" color="primary" onClick={handleClearForm} sx={{ height: '56px', width: '200px' }}>
           Clear Selections
         </Button>
         <Button variant="contained" color="primary" type="submit" sx={{ height: '56px', width: '200px' }}>
