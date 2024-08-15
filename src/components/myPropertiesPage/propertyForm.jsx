@@ -13,6 +13,7 @@ import {
     Checkbox, 
     ListItemText 
 } from '@mui/material'
+import { ImageRounded } from '@mui/icons-material'
 import { postNewProperty } from '../../services/propertiesService.jsx'
 import { getAllAmenities } from '../../services/amenitiesService.jsx'
 import { getAllPropertyTypes } from '../../services/propertyTypeService.jsx'
@@ -178,7 +179,7 @@ export const PropertyForm = ({ selectedProperty, onAddProperty, onClear }) => {
         justifyContent: "space-between",
       }}
     >
-      <Typography variant="h6" gutterBottom align="center">
+      <Typography variant="h6" gutterBottom align="center" color={'#616161'}>
         {selectedProperty ? "Edit Property" : "Post A New Property"}
       </Typography>
       <Grid container spacing={2} sx={{ flexGrow: 1 }}>
@@ -208,9 +209,11 @@ export const PropertyForm = ({ selectedProperty, onAddProperty, onClear }) => {
             fullWidth
           />
           <FormControl fullWidth margin="dense">
-            <InputLabel>Property Type</InputLabel>
+            <InputLabel id='property-type-label'>Property Type</InputLabel>
             <Select
+            labelId='property-type-label'
               name="property_type"
+              label='Property Type'
               value={formData.property_type}
               onChange={handleChange}
             >
@@ -279,9 +282,11 @@ export const PropertyForm = ({ selectedProperty, onAddProperty, onClear }) => {
         </Grid>
         <Grid item xs={6} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
           <FormControl fullWidth margin="normal" sx={{ marginTop: '8px' }}>
-            <InputLabel>Amenities</InputLabel>
+            <InputLabel id='amenities-label'>Amenities</InputLabel>
             <Select
+              labelId='amenities-label'
               name="amenities"
+              label='Amenities'
               multiple
               value={formData.amenities}
               onChange={handleChange}
@@ -300,7 +305,7 @@ export const PropertyForm = ({ selectedProperty, onAddProperty, onClear }) => {
             sx={{
               mt: 2,
               width: '100%',
-              height: '322px',
+              height: '349px',
               border: '1px solid rgba(0, 0, 0, 0.2)',
               borderRadius: '8px',
               display: 'flex',
@@ -317,14 +322,17 @@ export const PropertyForm = ({ selectedProperty, onAddProperty, onClear }) => {
                 style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '8px' }}
               />
             ) : (
-              <Typography variant="body1">Upload an Image</Typography>
+              <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <ImageRounded sx={{ fontSize: 40, mb: 1 }} />
+                <Typography variant="body1">Image Preview</Typography>
+              </Box>
             )}
           </Box>
           <Button
             variant="contained"
             component="span"
             onClick={() => document.getElementById("image-upload").click()}
-            sx={{ mt: 4, mb: 0.5, height: '56px' }}
+            sx={{ mt: 5.2, mb: 0.5, height: '56px' }}
           >
             Upload an Image
           </Button>
@@ -334,16 +342,16 @@ export const PropertyForm = ({ selectedProperty, onAddProperty, onClear }) => {
             onChange={handleImageChange}
             sx={{ display: "none" }}
           />
+          <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 4.7, paddingBottom: "4px", gap: 10 }}>
+            <Button variant="outlined" color="primary" onClick={handleClearForm} sx={{ height: '56px', width: '275px' }}>
+              Clear Selections
+            </Button>
+            <Button variant="contained" color="primary" type="submit" sx={{ height: '56px', width: '275px' }}>
+              {selectedProperty ? "Update Property" : "Post Property"}
+            </Button>
+          </Box>
         </Grid>
       </Grid>
-      <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 2, paddingBottom: "10px", gap: 24.5 }}>
-        <Button variant="outlined" color="primary" onClick={handleClearForm} sx={{ height: '56px', width: '200px' }}>
-          Clear Selections
-        </Button>
-        <Button variant="contained" color="primary" type="submit" sx={{ height: '56px', width: '200px' }}>
-          {selectedProperty ? "Update Property" : "Post Property"}
-        </Button>
-      </Box>
     </Box>
   )
 }
