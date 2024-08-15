@@ -109,7 +109,7 @@ export const MyPropertiesList = ({ properties, setSelectedProperty, onDeleteProp
                     <Button 
                       fullWidth
                       size="small" 
-                      color="secondary"
+                      color="primary"
                       onClick={() => onDeleteProperty(property.id)}
                       sx={{ justifyContent: 'center', backgroundColor: '#faf2e6', '&:hover': {backgroundColor: '#e1d9cf'} }}
                     >
