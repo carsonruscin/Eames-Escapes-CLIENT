@@ -12,7 +12,7 @@ export const MyPropertiesList = ({ properties, setSelectedProperty, onDeleteProp
       boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
       overflowY: 'auto',
     }}>
-      <Typography variant="h6" gutterBottom align='center'>My Properties</Typography>
+      <Typography variant="h6" gutterBottom align='center' color={'#616161'}>My Properties</Typography>
       <Grid container spacing={2} sx={{ height: '100%' }}>
         {properties.map((property) => (
           <Grid item xs={6} key={property.id} sx={{ display: 'flex' }}>
@@ -100,7 +100,11 @@ export const MyPropertiesList = ({ properties, setSelectedProperty, onDeleteProp
                       size="small" 
                       color="primary" 
                       onClick={() => setSelectedProperty(property)}
-                      sx={{ justifyContent: 'center', backgroundColor: '#faf2e6', '&:hover': {backgroundColor: '#e1d9cf'} }}
+                      sx={{ 
+                        justifyContent: 'center', 
+                        backgroundColor: '#faf2e6', 
+                        '&:hover': {backgroundColor: '#e1d9cf'},
+                      }}
                     >
                       Edit Listing
                     </Button>
@@ -111,7 +115,11 @@ export const MyPropertiesList = ({ properties, setSelectedProperty, onDeleteProp
                       size="small" 
                       color="primary"
                       onClick={() => onDeleteProperty(property.id)}
-                      sx={{ justifyContent: 'center', backgroundColor: '#faf2e6', '&:hover': {backgroundColor: '#e1d9cf'} }}
+                      sx={{ 
+                        justifyContent: 'center', 
+                        backgroundColor: '#faf2e6', 
+                        '&:hover': {backgroundColor: '#e1d9cf'}, 
+                      }}
                     >
                       Delete Listing
                     </Button>
